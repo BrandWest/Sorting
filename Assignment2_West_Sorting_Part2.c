@@ -1,6 +1,6 @@
 /*
 ===========================================================
-Author: Brandon West, Christopher Brennen
+Author: Brandon West
 Class: PROG 20025
 Assignemnt 2: Fun with Sorting!
 Date: Oct 19, 2018
@@ -20,21 +20,24 @@ void adjustHeap( int heapArray[], int inputSize );
 
 int main()
 {
+ // varibales for user input size
   int inputSize = 0, counter = 1;
   FILE *filePtr; // for reading from the file
-
+ 
+ // opens file pointer for specific text
   filePtr = fopen ("Reverse.txt", "r" );
 
   FILE *newPtr;// for wiriting to a new file
   newPtr = fopen ( "HeapSorted.txt", "w" );
 
-  // if the file fails to open
+  // if the files fail to open
   if( filePtr == NULL || newPtr == NULL )
   {
     printf ( "Error opening file or creating file" );
     fclose(filePtr);
     exit(1);
   } //end of failure
+ 
   // else if the file is successful
   else
   {
@@ -54,6 +57,7 @@ int main()
     clock_t start = clock();
     // heap sort method
     adjustHeap(heapArray, inputSize);
+   // calucation for how long the sort took
     double timeElapsed = ((double)clock() - start) / CLOCKS_PER_SEC;
     printf ( "Sort time: %.4f\n", timeElapsed );
 
@@ -66,9 +70,7 @@ int main()
     // closes the pointers for the files
     fclose ( newPtr );
     fclose ( filePtr );
-
   }// end of else statement
-
   return 0;
 } // end of main
 
